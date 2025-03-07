@@ -9,10 +9,10 @@ import java.nio.file.Paths;
 public class Main {
     public static void main(String[] args) {
         try {
-            String input = Files.readString(Paths.get("input.txt"));
+            String input = Files.readString(Paths.get("asset/input.txt"));
             String converted = JapaneseKanjiConverter.convert(input);
             String finalResult = HiraganaRemover.removeHiragana(converted);
-            Files.writeString(Paths.get("finished_output.txt"), finalResult);
+            Files.writeString(Paths.get("asset/finished_output.txt"), finalResult);
             System.out.println("转换完成，最终结果已写入finished_output.txt");
         } catch (IOException e) {
             System.err.println("文件操作错误: " + e.getMessage());
