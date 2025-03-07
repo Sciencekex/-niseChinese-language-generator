@@ -11,98 +11,13 @@
 
 (偽中国語生成器:[GPT自动翻译日语,选用尽量多汉字的日语词]->[GPT转换外来语:转成原英语]->[Py日语汉字词汇转换器:如について→に関して，かなり→可成り，なぜ→何故，ある→有る，ない→無い，ありません→冇りません]->[Py去掉假名])
 
-第一步的GPT提示词:`翻译成日语,要求使用尽可能多汉字的日语词汇`
+第一步的DS提示词:`翻译成日语,要求使用尽可能多汉字的日语词汇`
 
-第二步的GPT提示词:`把一下日语文章中的外来语词汇用原英语词汇替换,举个例子如「アイドル」→「idol」,「バンドリ」→「bangdre」等等`
+第二步的DS提示词:`把一下日语文章中的外来语词汇用原英语词汇替换,举个例子如「アイドル」→「idol」,「バンドリ」→「bangdre」等等`
 
-第三步:
+第三步:执行Java程序即可
 
-```python
-### Japanese Kanji Converter.py
 
-def advanced_kanji_converter(sentence):
-    # 定义转换规则,这个自己还能再想想
-    conversion_rules = {
-        "について": "に関して",
-        "かなり": "可成り",
-        "なぜ": "何故",
-        "ある": "有る",
-        "ない": "無い",
-        "ありません": "冇りません"
-    }
-
-    # 按规则替换句子中的词汇
-    for kana, kanji in conversion_rules.items():
-        sentence = sentence.replace(kana, kanji)
-
-    return sentence
-
-# 文件操作版本
-if __name__ == "__main__":
-    # 读取输入文件
-    with open("input.txt", "r", encoding="utf-8") as infile:
-        input_sentence = infile.read()
-
-    # 转换句子
-    converted_sentence = advanced_kanji_converter(input_sentence)
-
-    # 写入输出文件
-    with open("output.txt", "w", encoding="utf-8") as outfile:
-        outfile.write(converted_sentence)
-
-    print("转换完成，结果已写入output.txt")
-
-```
-
-第四步:
-
-```python
-### Remove Hiragana.py
-
-import re
-
-def remove_hiragana(text):
-    """
-    去掉字符串中的平假名。
-
-    参数：
-        text (str): 输入的字符串。
-
-    返回：
-        str: 去掉平假名后的字符串。
-    """
-    # Unicode 平假名范围：\u3040-\u309F
-    hiragana_pattern = r'[\u3040-\u309F]'
-    return re.sub(hiragana_pattern, '', text)
-
-def process_files(input_file, output_file):
-    """
-    读取输入文件，去掉平假名后写入输出文件。
-
-    参数：
-        input_file (str): 输入文件路径。
-        output_file (str): 输出文件路径。
-    """
-    try:
-        with open(input_file, 'r', encoding='utf-8') as infile:
-            text = infile.read()
-
-        result = remove_hiragana(text)
-
-        with open(output_file, 'w', encoding='utf-8') as outfile:
-            outfile.write(result)
-
-    except FileNotFoundError:
-        print(f"文件 {input_file} 未找到！")
-    except Exception as e:
-        print(f"发生错误: {e}")
-
-# 测试示例
-if __name__ == "__main__":
-    input_file = "output.txt"
-    output_file = "finished_output.txt"
-    process_files(input_file, output_file)
-```
 
 `最后再手动删删减减片假名,手敲原英语词汇(考验你日语水平的时刻到了),即可完成`
 
@@ -112,36 +27,25 @@ if __name__ == "__main__":
 
 
 
+转换文:
+
+有一说一，半日間webPC端牛客刷結果、結論、自分普通人間思、純粋学院本computer科学科卒業普通学生、目標杭州東方silicon valley、自分生経済的独立仕事見。、必要無些細気必要冇。
+
+（「杭州」六小龍科創企業（DeepSeek、遊戯科学、宇樹）、突然深圳有名。）
+
+引言監督発言一部引用：
+
+> [!NOTE] 【睡前消息858】中米「対帳」 1984年 | 睡前消息文稿合集  
+> 中米底辺違三番目理由移民政策関係有。私小紅書America人不満述観察、主上昇通道高集中。大学loan利息低、大学行必良仕事見、中産階級冇。多人々、努力中産階級、重負債背負、長期間底辺沈。一方、America毎年、世界中最優秀学生招America学、働。人々目標、America仕事得、中産階級以上階層入。数十億人人口選人材、平均的言、三億人超America人子孫賢野心的。、America教育水準高移民受入無限、上昇通道相対的狭。中国名門大学卒業生America金稼良言、America本土学生中産階級難言、同事表裏。理論的、賢人々America集、新産業創造、新製品開発、下層雇製造、十分技術職position提供可能。America下層過理由一。、現在、世界産業国際化、America開発行、必America製造冇。Mask stainless steel rocket America作仕事残、車製造多position中国分無。、America底辺、中産階級難感、雇用pressure大、安定技術職position不足感。数年前、私蘇州上海古街、体面有職業外部人々奪不満言地元人々出会。不満立場的立無、論理的多小紅書「対帳」意見説得力。
+
+***
 原文:
 
-```
-第一次写日记, 那就鞋垫流水账吧.
+有一说一, 刷了半天webPC端的牛客, 结论: 把自己当成一个普通人, 就是纯纯一个学院本计算机科班毕业的普通学生, 目标就是在杭州这个东方硅谷中找到一份能让自己活下去的能经济独立的工作. 所以, 焦虑一些有的没的事没有必要的了.
 
-为什么会写日记呢? 肯定是想记录一下每日的想法.
-其实主要就是室友也在写日记, 这种带头效应的效果很明显.
+("杭州"因为六小龙科创企业(DeepSeek/游戏科学/宇树 等等)而变得突然和深圳一样有名了起来)
 
-昨日的VRChat话题について：最后聊到了中国大人气的アイドルアニメ　バンドリ／ラブライブ 也是可以的
+引援一段督工的发言:
 
-今天上午收到了快递, 二手iPhone SE 2, 很开心, 立马激活了日本关东交通卡Suica, 不愧是最全球化的手机品牌.
-
-最后想了想人生走势, 还得是测开+运维岗, 语言:日语顶级+英语四级(纯個人的な趣味)
-当然, 学习路线依旧可以参考:Java后端+Python测试+Vue.js前端
-```
-
-
-
-转换后:
-```
-初日記執筆、偽中国語、適当流水帳。  
-
-何故日記書？確日々考記録理由有。  
-実際主roommate日記書、先導効果leading effect可成顕著。  
-
-昨日VRChat話題関：最後中国人気idol anime『bangdre』『Love Live』関話、結構盛上。  
-
-本日午前、宅配便届。中古iPhone SE 2、大喜、早速日本関東交通card「Suica」activate。最global化smartphone brand言。  
-
-最後人生進路関少考。test engineer＋operation management職種良。言語日本語top level＋英語CET-4（完全個人趣味）。  
-学習route引続以下参考：Java backend＋Python test＋Vue.js frontend。
-```
-
+> [!NOTE] 【睡前消息858】我的中美“对账” 从1984开始 | 睡前消息文稿合集
+> 中美底层差异第三个原因可能和移民政策有关系。我观察了一些小红书上的美国人抱怨，往往集中在上升通道太贵，读大学的贷款利息不低，读了也未必能找到好工作成为中产，好多人甚至就是因为努力挣扎想成为中产反而背上了沉重的债务，长期沉淀在底层。与此同时，美国每年还在从全世界招揽最聪明的学生来美国读书或者工作，这些人的目标也是留在美国工作，进入中产以上的阶层。几十亿人口选出来的人才平均来说肯定要比三亿多美国人的后代更聪明更有野心。所以只要美国不停止招揽教育水平高的移民，上升通道就一定会相对狭窄。中国名校的本科生说美国好赚钱，美国的本土学生说当中产太难了，这是一件事的正反两面。当然理论上来说，聪明的人聚集到美国，聚集到一起创造新产业，也能研发新产品，再雇佣下层来制造，提供足够的技工职位。这的确是美国下层还过得去的原因之一。但是现在世界的大多数产业是国际化的，在美国研发不一定在美国制造。马斯克可以把焊不锈钢火箭的职位留在美国，但是造汽车就要分出大量的职位来中国。所以美国底层不仅觉得当中产很难，还感觉就业压力大，缺乏稳定的技工职位。前些年我在苏州和上海的老城区也遇见过一些抱怨外地人抢走体面职位的本地人。这些抱怨虽然在立场上不太站得住，但是在逻辑上比很多小红书对账的言论更说得通。
